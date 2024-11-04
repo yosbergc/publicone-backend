@@ -14,6 +14,14 @@ const Blog = sequelize.define('blog', {
     description: {
         type: DataTypes.TEXT,
         allowNull: true
+    },
+    userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'users',
+            key: 'id'
+        }
     }
 })
 
