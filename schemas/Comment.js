@@ -1,5 +1,7 @@
 const sequelize = require('../libs/sequelize')
 const { DataTypes } = require('sequelize')
+const User = require('./User')
+const Post = require('./Post')
 
 const Comment = sequelize.define('comment', {
     id: {
@@ -28,5 +30,7 @@ const Comment = sequelize.define('comment', {
         }
     }
 })
+
+Comment.belongsTo(User, { foreignKey: 'userId', as: 'user'})
 
 module.exports = Comment;
