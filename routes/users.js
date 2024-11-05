@@ -6,12 +6,14 @@ const bcrypt = require('bcrypt')
 router.get('/:id', async (req, res) => {
     const { id } = req.params
 
-    try {
-        const user = await User.findByPk(id)
-        res.json(user)
-    } catch (error) {
-        res.status(500).send(error)
+    const user = await User.findByPk(id, {
+        include: ['posts', 'blogs']
+    })
+
+    if (!user) {
+        return res.status(500).send('We got one error.')
     }
+    res.json(user)
 })
 
 router.post('/', async (req, res) => {

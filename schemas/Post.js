@@ -33,14 +33,6 @@ const Post = sequelize.define('post', {
             model: 'blogs',
             key: 'id'
         }
-    },
-    commentId: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-        references: {
-            model: 'comments',
-            key: 'id'
-        }
     }
 })
 
@@ -50,7 +42,7 @@ Post.belongsTo(User, { foreignKey: 'userId', as: 'user'})
 Blog.hasMany(Post, { foreignKey: 'blogId', as: 'posts'})
 Post.belongsTo(Blog, { foreignKey: 'blogId', as: 'blog'})
 
-Post.hasMany(Comment, { foreignKey: 'commentId', as: 'comments'})
-Comment.belongsTo(Post, { foreignKey: 'commentId', as: 'post'})
+Post.hasMany(Comment, { foreignKey: 'postId', as: 'comments'})
+Comment.belongsTo(Post, { foreignKey: 'postId', as: 'post'})
 
 module.exports = Post;

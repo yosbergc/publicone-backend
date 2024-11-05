@@ -6,5 +6,4 @@ const sequelizeInstance = new Sequelize(process.env.DB_URI, {
     logging: true
 })
 
-sequelizeInstance.sync({ force: true })
 module.exports = sequelizeInstance;

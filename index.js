@@ -11,8 +11,8 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/users', userRouter)
-app.use('/blog', blogRouter)
-app.use('/post', postRouter)
-app.use('/comment', commentRouter)
+app.use('/blogs', blogRouter)
+app.use('/posts', postRouter)
+app.use('/comments', commentRouter)
 
 app.listen(PORT)

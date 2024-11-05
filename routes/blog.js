@@ -2,19 +2,18 @@ const express = require('express')
 const router = express.Router()
 const Blog = require('../schemas/Blog')
 
-router.get('/id', async (req, res) => {
-    const { id  } = req.params
+router.get('/:id', async (req, res) => {
+    const { id } = req.params
 
-    if(!id) {
-        return res.status(400).send('Bad request')
-    } 
+    const blogFound = await Blog.findByPk(id, {
+        include: ['posts']
+    })
 
-    try {
-        const blogFound = await Blog.findByPk(id)
-        res.json(blogFound)
-    } catch(error) {
-        res.status(500).send(error)
+    if (!blogFound) {
+        return res.status(404).send('Not found')
     }
+    
+    res.json(blogFound)
 })
 
 router.post('/', async (req, res) => {
@@ -33,7 +32,7 @@ router.post('/', async (req, res) => {
     
         res.json(newBlog)
     } catch (error) {
-        res.status(500).send(error)
+        res.status(500).send(`We got one error. Code: ${error.parent.code}. If you want help contact our customer service.`)
     }
 })
 
