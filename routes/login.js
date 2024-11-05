@@ -31,8 +31,10 @@ router.post('/', async (req, res) => {
             id: foundUser.id,
             email: foundUser.email
         }
-        
-        const token = jwt.sign(user, process.env.PRIVATE_KEY)
+
+        const token = jwt.sign(user, process.env.PRIVATE_KEY, {
+            expiresIn: '7d'
+        })
 
         res.json({
             nombre: foundUser.username,
