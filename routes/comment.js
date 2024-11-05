@@ -6,7 +6,7 @@ router.post('/', async (req, res) => {
     const { content, userId, postId } = req.body
 
     if (!content || !userId || !postId) {
-        res.status(400).send('Bad request')
+        return res.status(400).send('Bad request')
     }
 
     try {

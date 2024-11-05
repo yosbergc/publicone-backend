@@ -6,7 +6,7 @@ router.get('/id', async (req, res) => {
     const { id  } = req.params
 
     if(!id) {
-        res.status(400).send('Bad request')
+        return res.status(400).send('Bad request')
     } 
 
     try {
@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
     const { name, description, userId } = req.body
 
     if (!name || !userId ) {
-        res.status(400).send('Bad request')
+        return res.status(400).send('Bad request')
     }
 
     try {

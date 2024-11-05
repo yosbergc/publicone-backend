@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
     const { email, password, username } = req.body
 
     if (!email || !password || !username) {
-        res.status(400).send('Bad request')
+        return res.status(400).send('Bad request')
     }
 
     const hashedPassword = await bcrypt.hash(password, 5)
