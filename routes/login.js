@@ -3,6 +3,7 @@ const router = express.Router()
 const User = require('../schemas/User')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 router.post('/', async (req, res) => {
     const { email, password } = req.body
@@ -30,7 +31,13 @@ router.post('/', async (req, res) => {
             id: foundUser.id,
             email: foundUser.email
         }
-        jwt.sign(user, )
+        
+        const token = jwt.sign(user, process.env.PRIVATE_KEY)
+
+        res.json({
+            nombre: foundUser.username,
+            token
+        })
     } catch (error) {
         res.status(500).send(error)
     }
