@@ -6,7 +6,7 @@ const Comment = require('./Comment')
 
 const Post = sequelize.define('post', {
     id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
